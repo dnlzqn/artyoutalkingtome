@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+    	<title>Art you talking to me? - EAD Tarragona - Tinglado 2</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@1,200&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+		<style>
+			html,
+			body {
+				/* Estils obligatoris per a que ScrollMagic funcioni bé */
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				/* Així aconseguim que els càlculs es facin sobre tota l'alçada de la finestra/viewport */
+				font-size: 62.5%;
+			}
+
+			h1 {
+				font: 400 8rem/9rem 'Inter', sans-serif;
+			} 
+
+			section {
+				text-align: center;
+				color: #EFEFEF;
+				position: relative;
+				overflow: hidden;
+			}
+
+			section div {
+				width: 100%;
+				text-align: left;
+			}
+
+			.pantalla-completa {
+				height: 100%;
+			    display: flex;
+			    justify-content: center;
+			    align-items: center;
+			    flex-direction: column;
+			}
+
+			#outro {
+				background: url("svg/art_d.svg") white no-repeat;
+				background-position: 50% 50%;
+				background-size: 70%;
+			}
+
+			#outro div {
+				width: 700px;
+				margin: 0 auto;
+			}
+
+			.pantalla-nocompleta {
+				display: flex;
+				justify-content: center;
+				flex-direction: column;
+				max-width: 1920px;
+				margin: 0 auto;
+			}
+
+			.pantalla-nocompleta div {
+				text-align: left;
+			    display: flex;
+			    flex-direction: column;
+			    align-items: flex-end;
+			}
+
+			a {
+				animation: oscilar 3s 2s infinite ease-in-out;
+			}
+
+			a:hover {
+				color: #CA9AB1;
+				cursor: pointer;
+			}
+
+			.eadt,
+			.lloc_data {
+				position: absolute;
+			    left: 2rem;
+			    z-index: 100;
+			    width: 30%;
+			}
+
+			.eadt {
+			    top: 2rem;
+			}
+
+			.lloc_data {
+				bottom: 2rem;
+			}
+
+			.art_d {
+				width: 3000px;
+			}
+
+			#art_you_dos {
+				text-align: center;
+			}
+
+			#dos {
+				width: 120%;
+			}
+
+			.fons1 {
+				position: absolute;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: url("svg/fons1.svg") no-repeat center center;
+				background-size: cover;
+			}
+
+			.fons2 {
+				position: absolute;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: url("svg/fons2.svg") no-repeat center center;
+				background-size: cover;
+				opacity: 1;
+				transition: all 3s ease-out;
+			}
+
+			.aparicio {
+				opacity: 0;
+			}
+
+			.aparicio2 {
+				opacity: 1;
+			}
+
+			.gradient2 {
+				background-image:-webkit-radial-gradient(center, ellipse cover, #234523 0%,#eecc44 21%,#234566 55%);
+			}
+
+			.comisari {
+				align-items: baseline;
+			}
+			
+			.comisari h2,
+			.comisari h3,
+			.comisari p {
+				padding: 0 5rem;
+				width: 50%;
+			    margin-right: 0;
+			    margin-left: auto;
+			}
+
+			.comisari .rd {
+				width: 100%;
+				padding: 2.5rem 0;
+			}
+
+			.comisari .rd2 {
+				width: 50%;
+			    padding: 0 5rem 2.5rem;
+			}
+
+			.comisari p {
+				font: 300 2.2rem/3.1rem 'Inter', sans-serif;
+				color: black;
+				transition: all 0.3s;
+				margin-top: 0;
+			}
+
+			.comisari .cul {
+				margin-bottom: 15rem;
+			}
+
+			.comisari .subdestacat {
+				font: 300 1.8rem/2.3rem 'Inter', sans-serif;
+				margin-bottom: 9rem;
+			}
+
+			.comisari .destacat {
+				font: 200 3.8rem/5rem 'Inter', sans-serif;
+				margin-bottom: 9rem;
+			}
+
+			.comisari h2 {
+				font: 200 5.5rem/6rem 'Inter', sans-serif;
+				color: black;
+				margin-top: 9rem;
+			    margin-bottom: 0;
+			}
+
+			.pantalla-completa h2 {
+				font: 200 9rem/9rem 'Inter', sans-serif;
+				color: black;
+				margin-top: 9rem;
+			    margin-bottom: 0;
+			}
+
+			.comisari h2 .span1,
+			.pantalla-completa h2 .span1 {
+				animation: span1 10s infinite;
+			}
+
+			.comisari h2 .span2,
+			.pantalla-completa h2 .span2 {
+				animation: span2 10s infinite;
+			}
+
+			.comisari h2 .span3,
+			.pantalla-completa h2 .span3 {
+				animation: span3 10s infinite;
+			}
+
+			@keyframes span1 {
+			    50% {letter-spacing: 0.5rem;}
+			}
+
+			@keyframes span2 {
+			    50% {letter-spacing: 1rem;}
+			}
+
+			@keyframes span3 {
+			    50% {letter-spacing: 1.5rem;}
+			}
+
+			.comisari h3 {
+				font: 400 1.9rem/3rem 'Inter', sans-serif;
+				color: black;
+				padding-top: 0;
+			}
+
+			.logos img {
+			    position: absolute;
+			    width: 170px;
+			}
+
+			#ca {
+				top: 4rem;
+				left: 4rem;
+				width: 170px;
+			}
+
+			#po {
+				bottom: 4rem;
+				left: 4rem;
+				width: 380px;
+			}
+
+			#ea {
+				top: 4rem;
+				right: 4rem;
+				width: 280px;
+			}
+
+			#ta {
+				bottom: 4rem;
+				right: 4rem;
+				width: 220px;
+			}
+
+			#intro .fullscreen-bg__video {
+			    min-width: 100%;
+			    width: auto;
+			    height: auto;
+			}
+
+			.fullscreen-bg__video {
+			    width: 100%;
+			    //min-height: 100%;
+			}
+
+			#img1 {
+			  z-index: -1;
+			}
+
+			.iphone {
+				height: 850px;
+				background: black;
+			}
+
+			@media screen and (max-width:634px) {
+				html,
+				body {
+					font-size: 50%;
+					color: black;
+				}
+
+				.eadt,
+				.lloc_data {
+				    width: 75%;
+				}
+
+				.comisari {
+					display: block;
+					height: auto;
+				}
+
+				.comisari h2,
+				.comisari h3,
+				.comisari p {
+					padding: 2.8rem;
+					width: 90%;
+					margin: 0 auto;
+				}
+
+				.comisari h2 {
+					margin-top: 9rem;
+				}
+
+				.comisari h3 {
+					padding-top: 0;	
+				}
+
+				.comisari .rd2 {
+					width: 100%;
+					padding: 2.8rem 0;
+				}
+
+				#ta {
+					bottom: 12rem;
+					width: 50%;
+				}
+
+				#po {
+					bottom: 4rem;
+					left: 4rem;
+					width: 85%;
+				}
+
+				#ea {
+					top: 4rem;
+					left: 4rem;
+					width: 74%;
+				}
+
+				#ca {
+					width: 16%;
+				}
+
+				#outro {
+					background-size: 90%;
+				}
+
+				.iphone {
+					height: auto;
+				}
+
+				.pantalla-completa h2 {
+					font: 200 6rem/6rem 'IBM Plex Sans', sans-serif;
+					font-style: italic;
+				}
+
+				#outro div {
+					width: 90%;
+				}
+			}
+
+		</style>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<!--CDN link for  TweenMax-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/ScrollMagic.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/plugins/animation.gsap.min.js"></script>
+	</head>
+
+	<body>
+		<section class="pantalla-completa lila" id="intro">
+			<div class="eadt"><img src="svg/EADT_d.svg" alt="EAD Tarragona"></div>
+			<div class="lloc_data"><img src="svg/tinglado_d.svg" alt="Tinglado 2. Del 8 de maig al 8 de juny de 2019"></div>
+			<div class="fons1"></div>
+			<div class="fons2"></div>
+			<div id="art_you">
+				<img class="art_d" id="uno" src="svg/art_d.svg" alt="art you talking to me?">
+			</div>
+		</section>
+		<section class="pantalla-nocompleta comisari">
+
+			<div>
+				<h2>art you talking to me?</h2>
+				<p class="subdestacat">Del 10 de maig al 10 de juny de 2019. Tinglado 2.</p>
+				<p class="destacat">Art you talking to me? pretén generar debat sobre el propi significat de l’acció creadora de l’artista i la seva incidència en el seu entorn col·lectiu, es presenta sota un títol que convida a reflexionar sobre el significat de tot allò que representa l’art contemporani.</p>
+			<img class="rd cul" src="svg/expo1.jpg"  alt="Exposició Art you talking to me?' al Tinglado.">
+				<p>L’estudi sintàctic del medi, ens ofereix una determinada classificació visual. Els considerats llocs de treball o territoris creatius, aquells que són ocupats pels éssers humans en les seves actuacions quotidianes, ens presenten una distribució dels objectes en funció de la seva centralitat-excentricitat, simetria-dissimetria, jerarquia-desviació, promiscuïtat-distància, on l’estudi de la seva sintaxi narrativa, serà el fruit d’una organització fonamentada, segons usos, hàbits o costums, en les diferents maneres d’actuar respecte a la seva construcció cultural i de representació artística.</p>
+				<img class="rd2" src="svg/obj.jpg"  alt="Exposició Art you talking to me?' al Tinglado.">
+				<p>Aquests objectes quotidians gaudeixen d’uns determinats aspectes materials, formals, simbòlics i narratius que ens ajudaran a establir la recerca d’un lloc on reordenar i dominar el nostre territori privat, en funció de la trajectòria personal i de la nostra escala de valors. Projectar aquesta mirada conceptualitzada amb una acció representativa implicada, els acabarà omplint de significat per sobre de les seves funcions utilitàries, aportant històries per la memòria i matèria per als sentits.</p>
+				<p>- Però, pot ser que la construcció cultural de totes aquestes obres i el seu entorn creatiu busquin intentar fugir d’un lloc estereotipat i tancat?</p>
+				<img class="rd2" src="svg/Omar1-2.jpg"  alt="Exposició Art you talking to me?' al Tinglado.">
+				<p>L’entorn comença a trontollar i entaula un monòleg discrepant d’una mirada insegura que mata la gana del desig i on els diferents conceptes plantejats en aquesta exposició, mostren l’evidència de ser entelèquies socials imperfectes, somnis que mai s’acaben de realitzar del tot o simples fonts d’angoixa, com un senzill “decorat” d’una vida fugissera. </p>
+				<p>Així és com arribem al complex camí de projecte artístic, aquell en el qual la seva significació no té per què estar lligada a la seva utilitat i on la recerca infructuosa en els llenguatges busca soscavar els fonaments d’aquesta societat. Objectes malmesos o traslladats que s’assenten sota directrius d’interdisciplinarietat i on les fronteres es dilueixen con- formant un trasvàs enriquidor entre les diferents matèries. El territori específic de l’art, transita fugaçment cap a la temporalitat i el sentit efímer de les obres el trobarem instal·lat en una constant hibridació de tècniques i en l’exploració de nous llenguatges de límits difusos, on les diferents pràctiques artístiques poden inclús acabar, dificultant la seva interpretació.</p> 
+				<img class="rd" src="svg/poliptic-maqueta.jpg"  alt="Exposició Art you talking to me?' al Tinglado.">
+				<p>Tal com diu Baudrillard tothom se sap, si és que no se sent, jutjat pels seus objectes, i en el fons cada un es sotmet a aquest judici, encara que només sigui per desmentir-ho. </p>
+				<p>Potenciar i activar l’art contemporani es una tasca que suposa donar suport als artistes, crear teixit cultural i aconseguir que el seu treball s’entengui i es valori per capes cada cop més amplies de la població. Amb Art you talking to me?, l’Escola d’Art i Disseny de la Diputació a Tarragona al Tinglado 2 Centre d’Art Contemporani, pretén formular un nou escenari per a l’experimentació. A l’entorn d’unes coordenades transversals, plantejades de manera diversa i obertes a nous enfoca- ments, s’han dibuixat les línies d’aproximació a una nova realitat expositiva a través de la mirada encuriosida dels artistes, amb un nou espai per la reflexió i l’anàlisi, enfront de les noves corrents contemporànies.</p>
+				<img class="rd2" src="svg/AnaGomez.jpg"  alt="Exposició Art you talking to me?' al Tinglado.">
+				<p>Apostar per aquest model, lluny de convencionalismes i de prioritats departamentals, ens ha permès dissenyar una exposició amb un extens ventall, molt representatiu, d’algunes de les aportacions més creatives d’aquests darrers anys a l’Escola, per saber i conèixer millor de les seves preocupacions com dels perfils més característics de la seva cultura contemporània i amb l’objectiu d’aconseguir deixar entreveure aquells aspectes més destacats del nostre propi context artístic. </p>
+
+<!-- 			<video class="fullscreen-bg__video rd2" preload="metadata" autoplay loop muted> 
+                <source src="svg/am-0.mp4#t=0.5" type="video/mp4"/> 
+                <source src="svg/am-0.webm#t=0.5" type="video/webm"/> 
+            </video> -->
+				<p class="subdestacat"><strong>Manel Margalef</strong><br>Comissari</p>
+			<img class="rd" src="svg/expo2.jpg"  alt="Exposició Art you talking to me?' al Tinglado.">
+			<img class="rd2" src="svg/expo3.jpg"  alt="Exposició Art you talking to me?' al Tinglado.">
+			<img class="rd" src="svg/expo4.jpg"  alt="Exposició Art you talking to me?' al Tinglado.">
+			<img class="rd" src="svg/expo5.jpg"  alt="Exposició Art you talking to me?' al Tinglado.">
+			<img class="rd" src="svg/expo6.jpg"  alt="Exposició Art you talking to me?' al Tinglado.">
+			<img class="rd2" src="svg/expo7.jpg"  alt="Exposició Art you talking to me?' al Tinglado.">
+			<iframe class="rd cul" width="560" height="415" src="https://www.youtube.com/embed/PFl7__HMv5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+			</div>
+		</section>
+
+		<section class="pantalla-completa" id="outro">
+			<div class="logos">
+				<img id="ca" src="svg/logos-ca.svg">
+			</div>
+			<div class="logos">
+				<img id="po" src="svg/logos-po.svg">
+			</div>
+			<div class="logos">
+				<img id="ea" src="svg/logos-ea.svg">
+			</div>
+			<div class="logos">
+				<img id="ta" src="svg/logos-ta.svg">
+			</div>
+		</section>
+		<script>
+			$(document).ready(function(){
+				
+				var controller = new ScrollMagic.Controller();
+
+				var gradients = new ScrollMagic.Scene({
+					triggerElement: '.lila',
+					triggerHook: 0,
+					offset:100
+				})
+				.setClassToggle('.fons2', 'aparicio')
+				.addTo(controller);
+
+				var marquee = new TweenMax.fromTo('#art_you',1.5,
+					{css:{position: "absolute", left: "0"}},
+					{css:{position: "absolute", left: "-2600px"}}
+				);
+
+				var frasemarquee = new ScrollMagic.Scene({
+					triggerELement: '#intro',
+					duration: 1000,
+					triggerHook: 0
+				})
+				.setTween(marquee)
+				.addTo(controller);
+
+				// l'escena amb el pin
+				var escenapineada = new ScrollMagic.Scene({
+					triggerElement: '#intro',
+					duration: 1000,
+					triggerHook: 0
+				})
+				.setPin('#intro')
+				.addTo(controller);
+
+			});
+		</script>
+	</body>
+</html>
